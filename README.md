@@ -12,7 +12,6 @@ import streamlit_modal as modal
 open_modal = st.button("Open")
 if open_modal:
     modal.open()
-    st.session_state.modal_open = True
 
 if modal.is_open():
     with modal.container() as container:
