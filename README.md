@@ -25,3 +25,9 @@ if modal.is_open():
             modal.close()
 
 ```
+
+## Install
+
+```shell script
+pip install streamlit-modal
+```
