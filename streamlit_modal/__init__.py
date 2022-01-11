@@ -58,20 +58,20 @@ def container():
 
         const exists = !!parent.document.querySelector("style[data-modal-css='true']");
         if (!exists) {
-        var head = parent.document.head || parent.document.getElementsByTagName('head')[0],
-    styleTag = parent.document.createElement('style')
-
-    styleTag.type = 'text/css'
-    styleTag.setAttribute("data-modal-css", "true");
-
-    if (styleTag.styleSheet) {
-        styleTag.styleSheet.cssText = styles;
-    } else {
-        styleTag.appendChild(parent.document.createTextNode(styles))
-    }
-
-    head.appendChild(styleTag)
-}
+            var head = parent.document.head || parent.document.getElementsByTagName('head')[0],
+            styleTag = parent.document.createElement('style')
+        
+            styleTag.type = 'text/css'
+            styleTag.setAttribute("data-modal-css", "true");
+        
+            if (styleTag.styleSheet) {
+                styleTag.styleSheet.cssText = styles;
+            } else {
+                styleTag.appendChild(parent.document.createTextNode(styles))
+            }
+        
+            head.appendChild(styleTag)
+        }
 
         // MODAL
         const iframes = parent.document.body.getElementsByTagName('iframe');
@@ -88,4 +88,5 @@ def container():
         height=0, width=0
     )
 
-    yield _container
+    with _container:
+        yield _container
