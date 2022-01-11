@@ -31,7 +31,7 @@ if modal.is_open():
 
         st.write("Some fancy text")
         value = st.checkbox("Check me")
-        st.write(value)
+        st.write(f"Checkbox checked: {value}")
         close = st.button("Close modal")
         if close:
             modal.close()
