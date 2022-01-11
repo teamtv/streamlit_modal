@@ -30,7 +30,7 @@ if modal.is_open():
         components.html(html_string)
 
         st.write("Some fancy text")
-        value = st.checkbox("blaat")
+        value = st.checkbox("Check me")
         st.write(value)
         close = st.button("Close modal")
         if close:
