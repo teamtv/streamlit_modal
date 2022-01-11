@@ -5,8 +5,6 @@ Modal support for streamlit. The hackish way.
 ## Example
 
 ```python
-import time
-
 import streamlit as st
 import streamlit.components.v1 as components
 
