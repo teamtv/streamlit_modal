@@ -43,13 +43,13 @@ def container():
                 }
 
                 div[data-modal-container='true'] > div:first-child > div {
-                    position: fixed !important;
-                    background-color: #f0f0f0;
-                    padding: 100px;
+                    width: unset !important;
+                    background-color: #f0f0f0;     
                     margin: auto;
-                    top: 120px;
-                    left: 0;
-                    right: 0;
+                    padding: 100px;
+                    margin-top: -100px;
+                    margin-left: -100px;
+                    margin-bottom: -200px;
                     z-index: 1001;
                     border-radius: 5px;
                 }
@@ -72,9 +72,6 @@ def container():
 
     head.appendChild(styleTag)
 }
-        //const sheet = parent.document.styleSheets[0];
-        //console.log("sheet", sheet);
-        //sheet.insertRule(styles, sheet.cssRules.length);
 
         // MODAL
         const iframes = parent.document.body.getElementsByTagName('iframe');
@@ -86,16 +83,9 @@ def container():
             container.setAttribute('data-modal-container', 'true');
           }
         }
-
-        window.addEventListener('unload', () => {
-        //   parent.document.body.removeChild(elm);
-        });
         </script>
-        <body style='background-color: red'>asdsad</body>
         """,
-        height=10, width=10
+        height=0, width=0
     )
 
     yield _container
-
-
