@@ -25,7 +25,13 @@ def container(title=None, padding=100):
         <style>
         div[data-modal-container='true'] {
             position: fixed;
+            width: 100vw !important;
+            left: 0;
             z-index: 1001;
+        }
+
+        div[data-modal-container='true'] > div:first-child {
+            margin: auto;
         }
 
         div[data-modal-container='true'] h1 a {
@@ -46,7 +52,6 @@ def container(title=None, padding=100):
         div[data-modal-container='true'] > div:first-child > div:first-child {
             width: unset !important;
             background-color: #f0f0f0;     
-            margin: auto;
             padding: """ + str(padding) + """px;
             margin-top: -""" + str(padding) + """px;
             margin-left: -""" + str(padding) + """px;
@@ -60,7 +65,9 @@ def container(title=None, padding=100):
         }
         div[data-modal-container='true'] > div > div:nth-child(2) > div {
             text-align: right;
+            padding-right: """ + str(padding) + """px;
         }
+
         div[data-modal-container='true'] > div > div:nth-child(2) > div > button {
             right: 0;
         }
