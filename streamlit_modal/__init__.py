@@ -25,6 +25,7 @@ def container(title=None, padding=100):
         <style>
         div[data-modal-container='true'] {
             position: fixed;
+            z-index: 1001;
         }
 
         div[data-modal-container='true'] h1 a {
