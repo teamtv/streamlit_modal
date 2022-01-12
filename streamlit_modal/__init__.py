@@ -19,7 +19,12 @@ def close():
 
 
 @contextmanager
-def container(title=None, padding=100):
+def container(title=None, padding=100, max_width=None):
+    if max_width:
+        max_width = str(max_width) + "px";
+    else:
+        max_width = 'unset';
+
     st.markdown(
         """
         <style>
@@ -48,6 +53,9 @@ def container(title=None, padding=100):
                 z-index: 1000;
                 background-color: rgba(0, 0, 0, 0.5);
         }
+        div[data-modal-container='true'] > div:first-child {
+            max-width: """ + max_width + """;
+        }
 
         div[data-modal-container='true'] > div:first-child > div:first-child {
             width: unset !important;
@@ -66,6 +74,7 @@ def container(title=None, padding=100):
         div[data-modal-container='true'] > div > div:nth-child(2) > div {
             text-align: right;
             padding-right: """ + str(padding) + """px;
+            max-width: """ + max_width + """;
         }
 
         div[data-modal-container='true'] > div > div:nth-child(2) > div > button {
