@@ -87,12 +87,12 @@ def container(title=None, padding=100):
     components.html(
         """
         <script>
-        // MODAL
+        // STREAMLIT-MODAL-IFRAME <- Don't remove this comment. It's used to find our iframe
         const iframes = parent.document.body.getElementsByTagName('iframe');
         let container
         for(const iframe of iframes)
         {
-          if (iframe.srcdoc.indexOf("MODAL") !== -1) {
+          if (iframe.srcdoc.indexOf("STREAMLIT-MODAL-IFRAME") !== -1) {
             container = iframe.parentNode.previousSibling;
             container.setAttribute('data-modal-container', 'true');
           }
