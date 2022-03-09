@@ -1,6 +1,7 @@
 from uuid import uuid4
 from contextlib import contextmanager
 
+from deprecation import deprecated
 import streamlit as st
 import streamlit.components.v1 as components
 
@@ -128,20 +129,29 @@ class Modal:
 
 _default_modal = Modal('', key='streamlit-modal-default')
 
-
+@deprecated(deprecated_in="0.0.6", removed_in="1.0.0",
+                        current_version='0.0.6',
+                        details="Use the `Modal().is_open()` instead")
 def is_open():
     return _default_modal.is_open()
 
-
+@deprecated(deprecated_in="0.0.6", removed_in="1.0.0",
+                        current_version='0.0.6',
+                        details="Use the `Modal().open()` instead")
 def open():  # pylin: disable=redefined-builtin
     return _default_modal.open()
 
-
+@deprecated(deprecated_in="0.0.6", removed_in="1.0.0",
+                        current_version='0.0.6',
+                        details="Use the `Modal().close()` instead")
 def close():
     return _default_modal.close()
 
 
 @contextmanager
+@deprecated(deprecated_in="0.0.6", removed_in="1.0.0",
+                        current_version='0.0.6',
+                        details="Use the `Modal().container()` instead")
 def container(title=None, padding=100, max_width=None):
     _default_modal.title = title
     _default_modal.padding = padding
