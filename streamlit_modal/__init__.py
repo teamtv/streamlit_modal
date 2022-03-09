@@ -137,7 +137,7 @@ def is_open():
 @deprecated(deprecated_in="0.1.0", removed_in="1.0.0",
                         current_version='0.1.0',
                         details="Use the `Modal().open()` instead")
-def open():  # pylin: disable=redefined-builtin
+def open():  # pylint: disable=redefined-builtin
     return _default_modal.open()
 
 @deprecated(deprecated_in="0.1.0", removed_in="1.0.0",
