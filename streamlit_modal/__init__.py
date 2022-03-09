@@ -8,10 +8,9 @@ import streamlit.components.v1 as components
 
 class Modal:
 
-    def __init__(self, title, padding=100, max_width=None, background_color='#fff', key=None):
+    def __init__(self, title, padding=100, max_width=None, key=None):
         self.title = title
         self.padding = padding
-        self.backgroud_color = background_color
         self.max_width = max_width
         self.key = key or f'streamlit-modal-{uuid4().hex}'
 
@@ -67,7 +66,7 @@ class Modal:
 
             div[data-modal-container='true'][key='{self.key}'] > div:first-child > div:first-child {{
                 width: unset !important;
-                background-color: {self.backgroud_color};     
+                background-color: #fff;     
                 padding: {self.padding}px;
                 margin-top: -{self.padding}px;
                 margin-left: -{self.padding}px;
@@ -129,28 +128,28 @@ class Modal:
 
 _default_modal = Modal('', key='streamlit-modal-default')
 
-@deprecated(deprecated_in="0.0.6", removed_in="1.0.0",
-                        current_version='0.0.6',
+@deprecated(deprecated_in="0.1.0", removed_in="1.0.0",
+                        current_version='0.1.0',
                         details="Use the `Modal().is_open()` instead")
 def is_open():
     return _default_modal.is_open()
 
-@deprecated(deprecated_in="0.0.6", removed_in="1.0.0",
-                        current_version='0.0.6',
+@deprecated(deprecated_in="0.1.0", removed_in="1.0.0",
+                        current_version='0.1.0',
                         details="Use the `Modal().open()` instead")
 def open():  # pylin: disable=redefined-builtin
     return _default_modal.open()
 
-@deprecated(deprecated_in="0.0.6", removed_in="1.0.0",
-                        current_version='0.0.6',
+@deprecated(deprecated_in="0.1.0", removed_in="1.0.0",
+                        current_version='0.1.0',
                         details="Use the `Modal().close()` instead")
 def close():
     return _default_modal.close()
 
 
 @contextmanager
-@deprecated(deprecated_in="0.0.6", removed_in="1.0.0",
-                        current_version='0.0.6',
+@deprecated(deprecated_in="0.1.0", removed_in="1.0.0",
+                        current_version='0.1.0',
                         details="Use the `Modal().container()` instead")
 def container(title=None, padding=100, max_width=None):
     _default_modal.title = title
