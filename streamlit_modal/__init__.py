@@ -1,4 +1,3 @@
-from uuid import uuid4
 from contextlib import contextmanager
 
 from deprecation import deprecated
@@ -8,11 +7,11 @@ import streamlit.components.v1 as components
 
 class Modal:
 
-    def __init__(self, title, padding=100, max_width=None, key=None):
+    def __init__(self, title, key, padding=20, max_width=None):
         self.title = title
         self.padding = padding
         self.max_width = max_width
-        self.key = key or f'streamlit-modal-{uuid4().hex}'
+        self.key = key
 
     def is_open(self):
         return st.session_state.get(f'{self.key}-opened', False)
@@ -66,10 +65,11 @@ class Modal:
 
             div[data-modal-container='true'][key='{self.key}'] > div:first-child > div:first-child {{
                 width: unset !important;
-                background-color: #fff;     
+                background-color: #fff;
                 padding: {self.padding}px;
                 margin-top: -{self.padding}px;
                 margin-left: -{self.padding}px;
+                margin-right: -{self.padding}px;
                 margin-bottom: -{2*self.padding}px;
                 z-index: 1001;
                 border-radius: 5px;
@@ -95,7 +95,7 @@ class Modal:
             _container = st.container()
             if self.title:
                 _container.markdown(
-                    f"<h1>{self.title}</h1>", unsafe_allow_html=True)
+                    f"<h2>{self.title}</h2>", unsafe_allow_html=True)
 
             close_ = st.button('X', key=f'{self.key}-close')
             if close_:
