@@ -68,7 +68,7 @@ class Modal:
                 width: unset !important;
                 background-color: #fff;
                 padding: {self.padding}px;
-                margin-top: -{self.padding}px;
+                margin-top: {2*self.padding}px;
                 margin-left: -{self.padding}px;
                 margin-right: -{self.padding}px;
                 margin-bottom: -{2*self.padding}px;
@@ -87,6 +87,7 @@ class Modal:
 
             div[data-modal-container='true'][key='{self.key}'] > div > div:nth-child(2) > div > button {{
                 right: 0;
+                margin-top: {2*self.padding + 14}px;
             }}
             </style>
             """,
