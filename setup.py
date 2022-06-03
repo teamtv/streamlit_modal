@@ -8,7 +8,8 @@ def setup_package():
 
     setup(
         name="streamlit_modal",
-        version="0.0.5",
+        install_requires=['streamlit', 'deprecation'],
+        version="0.1.0",
         author="Koen Vossen",
         author_email="info@koenvossen.nl",
         url="https://github.com/teamtv/streamlit_modal",

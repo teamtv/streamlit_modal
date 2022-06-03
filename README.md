@@ -6,11 +6,12 @@ Modal support for streamlit. The hackish way.
 
 ```python
 import streamlit as st
-import streamlit_modal as modal
+from streamlit_modal import Modal
 
 import streamlit.components.v1 as components
 
 
+modal = Modal("Demo Modal")
 open_modal = st.button("Open")
 if open_modal:
     modal.open()
