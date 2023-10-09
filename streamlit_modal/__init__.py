@@ -18,12 +18,12 @@ class Modal:
 
     def open(self):
         st.session_state[f'{self.key}-opened'] = True
-        st.experimental_rerun()
+        st.rerun()
 
     def close(self, rerun=True):
         st.session_state[f'{self.key}-opened'] = False
         if rerun:
-            st.experimental_rerun()
+            st.rerun()
 
     @contextmanager
     def container(self):
