@@ -26,9 +26,9 @@ class Modal:
         st.session_state[f'{self.key}-opened'] = True
         rerun()
 
-    def close(self, rerun=True):
+    def close(self, rerun_condition=True):
         st.session_state[f'{self.key}-opened'] = False
-        if rerun:
+        if rerun_condition:
             rerun()
 
     @contextmanager
