@@ -13,10 +13,16 @@ except ImportError:
 
 class Modal:
 
-    def __init__(self, title, key, padding=20, max_width=None):
+    def __init__(self, title, key, padding=20, max_width=744):
+        """
+        :param title: title of the Modal shown in the h1
+        :param key: unique key identifying this modal instance
+        :param padding: padding of the content within the modal
+        :param max_width: maximum width this modal should use
+        """
         self.title = title
         self.padding = padding
-        self.max_width = max_width
+        self.max_width = str(max_width) + "px"
         self.key = key
 
     def is_open(self):
@@ -33,12 +39,6 @@ class Modal:
 
     @contextmanager
     def container(self):
-        if self.max_width:
-            max_width = str(self.max_width) + "px"
-        else:
-            # This is the standard (non-wide) format for streamlit container width
-            max_width = '744px'
-
         st.markdown(
             f"""
             <style>
@@ -68,7 +68,7 @@ class Modal:
                     background-color: rgba(0, 0, 0, 0.5);
             }}
             div[data-modal-container='true'][key='{self.key}'] > div:first-child {{
-                max-width: {max_width};
+                max-width: {self.max_width};
             }}
 
             div[data-modal-container='true'][key='{self.key}'] > div:first-child > div:first-child {{
@@ -86,7 +86,7 @@ class Modal:
                 overflow-y: scroll;
                 max-height: 80vh;
                 overflow-x: hidden;
-                max-width: {max_width};
+                max-width: {self.max_width};
             }}
             
             div[data-modal-container='true'][key='{self.key}'] > div > div:nth-child(2)  {{
@@ -96,7 +96,7 @@ class Modal:
             div[data-modal-container='true'][key='{self.key}'] > div > div:nth-child(2) > div {{
                 text-align: right;
                 padding-right: {self.padding}px;
-                max-width: {max_width};
+                max-width: {self.max_width};
             }}
 
             div[data-modal-container='true'][key='{self.key}'] > div > div:nth-child(2) > div > button {{
