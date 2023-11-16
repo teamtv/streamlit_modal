@@ -1,15 +1,3 @@
-# What my fork do ?
-
-## Description
-- Update ```st.experimental_rerun()``` to ```st.rerun()```
-- Add a condition to use always ```st.exprimental_rerun()``` if Streamlit version under 1.27
-
-## How to use:
-- Download ```streamlit_modal folder``` with ```__init__.py```
-- Put ```streamlit_modal folder``` folder at the root of your python script
-- Don't forget to install ```deprecation``` package (```pip install deprecation```)
-- That all folks !
-
 # Streamlit modal
 
 Modal support for streamlit. The hackish way.
