@@ -11,7 +11,7 @@ from streamlit_modal import Modal
 import streamlit.components.v1 as components
 
 
-modal = Modal("Demo Modal")
+modal = Modal("Demo Modal", key="demo-modal")
 open_modal = st.button("Open")
 if open_modal:
     modal.open()
