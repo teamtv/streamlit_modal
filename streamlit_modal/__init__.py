@@ -92,13 +92,11 @@ class Modal:
             div[data-modal-container='true'][key='{self.key}'] > div > div:nth-child(2)  {{
                 z-index: 1003;
                 position: absolute;
-                
             }}
             div[data-modal-container='true'][key='{self.key}'] > div > div:nth-child(2) > div {{
                 text-align: right;
                 padding-right: {self.padding}px;
                 max-width: {max_width};
-                /*width: 704px !important; */
             }}
 
             div[data-modal-container='true'][key='{self.key}'] > div > div:nth-child(2) > div > button {{
