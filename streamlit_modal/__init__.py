@@ -65,7 +65,7 @@ class Modal:
                     top: 0;
                     bottom: 0;
                     z-index: 1000;
-                    background-color: rgba(0, 0, 0, 0.5);
+                    background-color: rgba(50,50,50,0.8);
             }}
             div[data-modal-container='true'][key='{self.key}'] > div:first-child {{
                 max-width: {self.max_width};
@@ -73,7 +73,7 @@ class Modal:
 
             div[data-modal-container='true'][key='{self.key}'] > div:first-child > div:first-child {{
                 width: unset !important;
-                background-color: #fff;
+                background-color: #fff; /* Will be overridden if possible */
                 padding: {self.padding}px;
                 margin-top: {2*self.padding}px;
                 margin-left: -{self.padding}px;
@@ -129,6 +129,10 @@ class Modal:
                 container = iframe.parentNode.previousSibling;
                 container.setAttribute('data-modal-container', 'true');
                 container.setAttribute('key', '{self.key}');
+                
+                // Copy background color from body
+                const contentDiv = container.querySelector('div:first-child > div:first-child');
+                contentDiv.style.backgroundColor = getComputedStyle(parent.document.body).backgroundColor;
             }}
             }}
             </script>
