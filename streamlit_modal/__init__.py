@@ -36,13 +36,14 @@ class Modal:
         if self.max_width:
             max_width = str(self.max_width) + "px"
         else:
-            max_width = 'unset'
+            # This is the standard (non-wide) format for streamlit container width
+            max_width = '744px'
 
         st.markdown(
             f"""
             <style>
             div[data-modal-container='true'][key='{self.key}'] {{
-                position: fixed;
+                position: fixed; 
                 width: 100vw !important;
                 left: 0;
                 z-index: 999992;
@@ -81,14 +82,23 @@ class Modal:
                 z-index: 1001;
                 border-radius: 5px;
             }}
+            div[data-modal-container='true'][key='{self.key}'] > div:first-child > div:first-child > div:first-child  {{
+                overflow-y: scroll;
+                max-height: 80vh;
+                overflow-x: hidden;
+                max-width: {max_width};
+            }}
+            
             div[data-modal-container='true'][key='{self.key}'] > div > div:nth-child(2)  {{
                 z-index: 1003;
                 position: absolute;
+                
             }}
             div[data-modal-container='true'][key='{self.key}'] > div > div:nth-child(2) > div {{
                 text-align: right;
                 padding-right: {self.padding}px;
                 max-width: {max_width};
+                /*width: 704px !important; */
             }}
 
             div[data-modal-container='true'][key='{self.key}'] > div > div:nth-child(2) > div > button {{
