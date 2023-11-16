@@ -45,7 +45,7 @@ class Modal:
                 position: fixed;
                 width: 100vw !important;
                 left: 0;
-                z-index: 1001;
+                z-index: 999992;
             }}
 
             div[data-modal-container='true'][key='{self.key}'] > div:first-child {{
