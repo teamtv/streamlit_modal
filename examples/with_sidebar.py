@@ -1,31 +1,17 @@
-# Streamlit modal
-
-Modal support for streamlit. The hackish way.
-
-## Example
-
-```python
 import streamlit as st
 from streamlit_modal import Modal
 
 import streamlit.components.v1 as components
 
-
-modal = Modal(
-    "Demo Modal", 
-    key="demo-modal",
-    
-    # Optional
-    padding=20,    # default value
-    max_width=744  # default value
-)
+modal = Modal("Demo Modal", key="demo-modal")
 open_modal = st.button("Open")
 if open_modal:
     modal.open()
 
 if modal.is_open():
     with modal.container():
-        st.write("Text goes here")
+        for i in range(100):
+            st.write(f"Text goes here {i}")
 
         html_string = '''
         <h1>HTML string in RED</h1>
@@ -39,10 +25,9 @@ if modal.is_open():
         st.write("Some fancy text")
         value = st.checkbox("Check me")
         st.write(f"Checkbox checked: {value}")
-```
 
-## Install
-
-```shell script
-pip install streamlit-modal
-```
+with st.sidebar:
+    add_radio = st.radio(
+        "Choose a shipping method",
+        ("Standard (5-15 days)", "Express (2-5 days)")
+    )
