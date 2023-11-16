@@ -4,6 +4,12 @@ from deprecation import deprecated
 import streamlit as st
 import streamlit.components.v1 as components
 
+try:
+    from streamlit import rerun as rerun  # type: ignore
+except ImportError:
+    # conditional import for streamlit version <1.27
+    from streamlit import experimental_rerun as rerun  # type: ignore
+
 
 class Modal:
 
@@ -18,12 +24,12 @@ class Modal:
 
     def open(self):
         st.session_state[f'{self.key}-opened'] = True
-        st.experimental_rerun()
+        rerun()
 
-    def close(self, rerun=True):
+    def close(self, rerun_condition=True):
         st.session_state[f'{self.key}-opened'] = False
-        if rerun:
-            st.experimental_rerun()
+        if rerun_condition:
+            rerun()
 
     @contextmanager
     def container(self):
