@@ -109,13 +109,17 @@ class Modal:
         )
         with st.container():
             _container = st.container()
+            
+            title, close_button = _container.columns([0.9, 0.1])
             if self.title:
-                _container.markdown(
-                    f"<h2>{self.title}</h2>", unsafe_allow_html=True)
-
-            close_ = st.button('X', key=f'{self.key}-close')
-            if close_:
-                self.close()
+                with title:
+                    st.header(self.title)
+            with close_button:
+                close_ = st.button('X', key=f'{self.key}-close')
+                if close_:
+                    self.close()
+            
+            _container.divider()
 
         components.html(
             f"""
