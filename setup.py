@@ -9,7 +9,7 @@ def setup_package():
     setup(
         name="streamlit_modal",
         install_requires=['streamlit', 'deprecation'],
-        version="0.1.1",
+        version="0.1.2",
         author="Koen Vossen",
         author_email="info@koenvossen.nl",
         url="https://github.com/teamtv/streamlit_modal",
