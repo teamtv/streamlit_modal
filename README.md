@@ -4,6 +4,8 @@ Modal support for streamlit. The hackish way.
 
 ## Example
 
+### With default close button
+
 ```python
 import streamlit as st
 from streamlit_modal import Modal
@@ -17,7 +19,8 @@ modal = Modal(
     
     # Optional
     padding=20,    # default value
-    max_width=744  # default value
+    max_width=744,  # default value
+    include_close=True
 )
 open_modal = st.button("Open")
 if open_modal:
@@ -39,6 +42,28 @@ if modal.is_open():
         st.write("Some fancy text")
         value = st.checkbox("Check me")
         st.write(f"Checkbox checked: {value}")
+```
+
+### With own close button
+
+```python
+modal = Modal(
+    "Demo Modal", 
+    key="demo-modal",
+    include_close=False
+)
+open_modal = st.button("Open")
+if open_modal:
+    modal.open()
+
+if modal.is_open():
+    with modal.container():
+        st.write("Text goes here")
+        
+        exit = st.button("Exit", key="demo-modal-close-button")
+        if test:
+            st.session_state[f'demo-modal'] = False
+            st.rerun()
 ```
 
 ## Install

@@ -13,17 +13,19 @@ except ImportError:
 
 class Modal:
 
-    def __init__(self, title, key, padding=20, max_width=744):
+    def __init__(self, title, key, padding=20, max_width=744, include_close=True):
         """
         :param title: title of the Modal shown in the h1
         :param key: unique key identifying this modal instance
         :param padding: padding of the content within the modal
         :param max_width: maximum width this modal should use
+        :param include_close: whether to include close button in the container by default
         """
         self.title = title
         self.padding = padding
         self.max_width = str(max_width) + "px"
         self.key = key
+        self.include_close = include_close
 
     def is_open(self):
         return st.session_state.get(f'{self.key}-opened', False)
@@ -75,10 +77,10 @@ class Modal:
                 width: unset !important;
                 background-color: #fff; /* Will be overridden if possible */
                 padding: {self.padding}px;
-                margin-top: {2*self.padding}px;
+                margin-top: {2 * self.padding}px;
                 margin-left: -{self.padding}px;
                 margin-right: -{self.padding}px;
-                margin-bottom: -{2*self.padding}px;
+                margin-bottom: -{2 * self.padding}px;
                 z-index: 1001;
                 border-radius: 5px;
             }}
@@ -88,7 +90,7 @@ class Modal:
                 overflow-x: hidden;
                 max-width: {self.max_width};
             }}
-            
+
             div[data-modal-container='true'][key='{self.key}'] > div > div:nth-child(2)  {{
                 z-index: 1003;
                 position: absolute;
@@ -101,7 +103,7 @@ class Modal:
 
             div[data-modal-container='true'][key='{self.key}'] > div > div:nth-child(2) > div > button {{
                 right: 0;
-                margin-top: {2*self.padding + 14}px;
+                margin-top: {2 * self.padding + 14}px;
             }}
             </style>
             """,
@@ -109,16 +111,22 @@ class Modal:
         )
         with st.container():
             _container = st.container()
-            
-            title, close_button = _container.columns([0.9, 0.1])
-            if self.title:
-                with title:
-                    st.header(self.title)
-            with close_button:
-                close_ = st.button('X', key=f'{self.key}-close')
-                if close_:
-                    self.close()
-            
+
+            if self.include_close:
+                title, close_button = _container.columns([0.9, 0.1])
+                if self.title:
+                    with title:
+                        st.header(self.title)
+                with close_button:
+                    close_ = st.button('X', key=f'{self.key}-close')
+                    if close_:
+                        self.close()
+            else:
+                title, _ = _container.columns([0.9, 0.1])
+                if self.title:
+                    with title:
+                        st.header(self.title)
+
             _container.divider()
 
         components.html(
@@ -133,7 +141,7 @@ class Modal:
                 container = iframe.parentNode.previousSibling;
                 container.setAttribute('data-modal-container', 'true');
                 container.setAttribute('key', '{self.key}');
-                
+
                 // Copy background color from body
                 const contentDiv = container.querySelector('div:first-child > div:first-child');
                 contentDiv.style.backgroundColor = getComputedStyle(parent.document.body).backgroundColor;
@@ -152,29 +160,32 @@ class Modal:
 
 _default_modal = Modal('', key='streamlit-modal-default')
 
+
 @deprecated(deprecated_in="0.1.0", removed_in="1.0.0",
-                        current_version='0.1.0',
-                        details="Use the `Modal().is_open()` instead")
+            current_version='0.1.0',
+            details="Use the `Modal().is_open()` instead")
 def is_open():
     return _default_modal.is_open()
 
+
 @deprecated(deprecated_in="0.1.0", removed_in="1.0.0",
-                        current_version='0.1.0',
-                        details="Use the `Modal().open()` instead")
+            current_version='0.1.0',
+            details="Use the `Modal().open()` instead")
 def open():  # pylint: disable=redefined-builtin
     return _default_modal.open()
 
+
 @deprecated(deprecated_in="0.1.0", removed_in="1.0.0",
-                        current_version='0.1.0',
-                        details="Use the `Modal().close()` instead")
+            current_version='0.1.0',
+            details="Use the `Modal().close()` instead")
 def close():
     return _default_modal.close()
 
 
 @contextmanager
 @deprecated(deprecated_in="0.1.0", removed_in="1.0.0",
-                        current_version='0.1.0',
-                        details="Use the `Modal().container()` instead")
+            current_version='0.1.0',
+            details="Use the `Modal().container()` instead")
 def container(title=None, padding=100, max_width=None):
     _default_modal.title = title
     _default_modal.padding = padding

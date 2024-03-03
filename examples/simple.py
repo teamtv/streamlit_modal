@@ -9,7 +9,8 @@ modal = Modal(
 
     # Optional
     padding=20,  # default value
-    max_width=744  # default value
+    max_width=744,  # default value
+    include_close=True # default value
 )
 open_modal = st.button("Open")
 if open_modal:
